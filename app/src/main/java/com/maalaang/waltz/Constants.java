@@ -10,5 +10,7 @@ public class Constants {
 			+ "\"credential\" : \"whale\","
 			+ "\"password\" : \"whale88\"}"
 			+ "]}";
-	
+
+    public final static String PACKEGE = "com.maalaang.waltz";
+    public final static String DBNAME = "Waltz.db";
 }

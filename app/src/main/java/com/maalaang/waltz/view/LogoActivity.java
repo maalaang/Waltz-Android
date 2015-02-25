@@ -1,4 +1,4 @@
-package com.maalaang.waltz;
+package com.maalaang.waltz.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
+import com.maalaang.waltz.Constants;
+import com.maalaang.waltz.R;
 import com.maalaang.waltz.gcm.GcmModule;
 import com.maalaang.waltz.view.MainActivity;
 import com.maalaang.waltz.view.RegisterActivity;
@@ -26,8 +28,8 @@ import java.io.File;
 public class LogoActivity extends ActionBarActivity{
 
 
-    private final String PACKEGE = "com.maalaang.watalk";
-    private final String DB = "Watalk.db";
+    private final String PACKEGE = Constants.PACKEGE;
+    private final String DB = Constants.DBNAME;
     private GcmModule gcm = new GcmModule();
 
     public void onCreate(Bundle savedInstanceState){

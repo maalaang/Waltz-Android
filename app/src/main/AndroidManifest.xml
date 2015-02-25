@@ -38,7 +38,7 @@
             android:theme="@android:style/Theme.Translucent">
             ....
         </activity>
-        <activity android:name="com.maalaang.waltz.LogoActivity">
+        <activity android:name=".view.LogoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

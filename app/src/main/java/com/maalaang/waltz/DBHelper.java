@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final String DBNAME = "Watalk.db";
+    private static final String DBNAME = Constants.DBNAME;
     public static final int VERSION = 1;
 
     public DBHelper(Context context) {
@@ -43,6 +43,5 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
-        // TODO Auto-generated method stub
     }
 }
