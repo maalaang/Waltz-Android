@@ -6,7 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.widget.ListView;
 
 import com.maalaang.waltz.DBHandler;
-import com.maalaang.waltz.HistoryAdapter;
+import com.maalaang.waltz.Adapter.HistoryAdapter;
 import com.maalaang.waltz.R;
 
 /**

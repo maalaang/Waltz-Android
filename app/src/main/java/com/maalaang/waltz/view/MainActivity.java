@@ -28,8 +28,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.maalaang.waltz.CheckDB;
+import com.maalaang.waltz.ContactDB;
 import com.maalaang.waltz.DBHandler;
-import com.maalaang.waltz.DrawerListAdapter;
+import com.maalaang.waltz.Adapter.DrawerListAdapter;
 import com.maalaang.waltz.model.DrawerListData;
 import com.maalaang.waltz.R;
 import com.maalaang.waltz.model.User;
@@ -63,7 +65,13 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
-
+        CheckDB checkDB = new CheckDB(this);
+        checkDB.start();
+        try {
+            checkDB.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         initializeDrawer();
         initializeContact();
     }
@@ -126,7 +134,6 @@ public class MainActivity extends ActionBarActivity {
         mContactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //
 
                 User user = (User) parent.getAdapter().getItem(position);
                 if(user.isRegistered()){
@@ -140,7 +147,6 @@ public class MainActivity extends ActionBarActivity {
                 }else{
                     invite_Message(user.getPnum(), user.getUserName());
                 }
-                //startActivity(intent);
             }
         });
 

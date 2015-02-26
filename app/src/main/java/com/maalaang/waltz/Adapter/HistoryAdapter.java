@@ -1,4 +1,4 @@
-package com.maalaang.waltz;
+package com.maalaang.waltz.Adapter;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.maalaang.waltz.R;
 
 
 /**

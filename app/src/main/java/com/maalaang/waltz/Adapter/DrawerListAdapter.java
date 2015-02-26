@@ -1,4 +1,4 @@
-package com.maalaang.waltz;
+package com.maalaang.waltz.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.maalaang.waltz.R;
 import com.maalaang.waltz.model.DrawerListData;
 
 import java.util.ArrayList;

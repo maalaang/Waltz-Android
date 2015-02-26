@@ -129,7 +129,6 @@ public class RegisterActivity extends ActionBarActivity {
                     new DBHelper(RegisterActivity.this);
                     ContactDB contactDB = new ContactDB(RegisterActivity.this);
                     contactDB.saveDB();
-                    contactDB.startcheckDB();
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
                     finish();
