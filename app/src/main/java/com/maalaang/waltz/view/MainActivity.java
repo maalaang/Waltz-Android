@@ -3,14 +3,19 @@ package com.maalaang.waltz.view;
 
 
 import android.app.AlertDialog;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
+import android.database.MatrixCursor;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 
 import android.telephony.SmsManager;
@@ -22,6 +27,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -29,7 +35,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.maalaang.waltz.CheckDB;
-import com.maalaang.waltz.ContactDB;
 import com.maalaang.waltz.DBHandler;
 import com.maalaang.waltz.Adapter.DrawerListAdapter;
 import com.maalaang.waltz.model.DrawerListData;
@@ -38,6 +43,7 @@ import com.maalaang.waltz.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -190,8 +196,31 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        SearchManager searchManager = (SearchManager) MainActivity.this.getSystemService(Context.SEARCH_SERVICE);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+
+        SearchView searchView = null;
+        if (searchItem != null) {
+            searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        }
+        if (searchView != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(MainActivity.this.getComponentName()));
+        }
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //MainActivity.this.mContactAdapter.getFilter().filter(query);
+                return true;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                MainActivity.this.mContactAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
+
 
     @Override
     protected  void onPostCreate(Bundle savedInstanceState){
@@ -206,6 +235,10 @@ public class MainActivity extends ActionBarActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if(id == R.id.action_search){
+        }
         if(dtToggle.onOptionsItemSelected(item)){
             return true;
         }
@@ -213,7 +246,9 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public class ContactAdapter extends BaseAdapter {
-        private List<User> contactList;
+        List<User> contactList;
+        List<User> origon_contactList;
+        private Filter filter;
 
         public ContactAdapter() {
             this.contactList = new ArrayList<User>();
@@ -221,6 +256,7 @@ public class MainActivity extends ActionBarActivity {
 
         public void addContact(User user) {
             contactList.add(user);
+            origon_contactList = contactList;
             notifyDataSetChanged();
         }
 
@@ -296,6 +332,48 @@ public class MainActivity extends ActionBarActivity {
             }
             return convertView;
         }
+
+        public Filter getFilter() {
+            return filter = new filter_here();
+        }
+
+        public class filter_here extends Filter{
+
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                Log.e("ee",constraint.length()+"");
+                FilterResults Result = new FilterResults();
+                // if constraint is empty return the original names
+                if(constraint.length() == 0 || constraint == null ){
+                    Result.values = origon_contactList;
+                    Result.count = origon_contactList.size();
+                    contactList = origon_contactList;
+                    return Result;
+                }
+
+                List<User> Filtered_Names = new ArrayList<User>();
+                String filterString = constraint.toString().toLowerCase();
+                String filterableString;
+
+                for(int i = 0; i<origon_contactList.size(); i++){
+                    filterableString = origon_contactList.get(i).getUserName();
+                    if(filterableString.toLowerCase().contains(filterString)){
+                        Filtered_Names.add(origon_contactList.get(i));
+                    }
+                }
+                Result.values = Filtered_Names;
+                Result.count = Filtered_Names.size();
+
+                return Result;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint,FilterResults results) {
+                contactList = (ArrayList<User>) results.values;
+                notifyDataSetChanged();
+            }
+        }
+
 
     }
     static class ViewHolder{
