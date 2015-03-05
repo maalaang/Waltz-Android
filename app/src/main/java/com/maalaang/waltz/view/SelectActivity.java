@@ -1,11 +1,9 @@
 package com.maalaang.waltz.view;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -13,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.maalaang.waltz.CallVideo;
 
-import com.maalaang.waltz.PhoneNumber;
+import com.maalaang.waltz.ContactUtil;
 import com.maalaang.waltz.R;
 
 /**
@@ -47,10 +45,7 @@ public class SelectActivity extends Activity{
         bt_video.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TelephonyManager telephony = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-                PhoneNumber pnc = new PhoneNumber();
-                String  caller = pnc.PhoneNumberChange(telephony.getLine1Number());;
-
+                String  caller = ContactUtil.PhoneNumberChange(ContactUtil.myPhoneNumber(getApplicationContext()));
                 CallVideo call = new CallVideo(pnum, caller);
                 call.start();
                 try {
@@ -63,7 +58,6 @@ public class SelectActivity extends Activity{
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
             }
         });
         bt_voice.setOnClickListener(new View.OnClickListener() {

@@ -1,6 +1,5 @@
 package com.maalaang.waltz.view;
 
-import android.content.Context;
 import android.content.Intent;
 
 import android.os.Bundle;
@@ -8,17 +7,15 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.PhoneNumberFormattingTextWatcher;
-import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 
 import com.maalaang.waltz.Constants;
+import com.maalaang.waltz.ContactUtil;
 import com.maalaang.waltz.R;
 import com.maalaang.waltz.gcm.GcmModule;
-import com.maalaang.waltz.view.MainActivity;
-import com.maalaang.waltz.view.RegisterActivity;
 
 import java.io.File;
 
@@ -54,8 +51,7 @@ public class LogoActivity extends ActionBarActivity{
                     finish();
                 }else{
                     setContentView(R.layout.register);
-                    TelephonyManager telephony = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-                    String  telPhoneNo = telephony.getLine1Number();
+                    String  telPhoneNo = ContactUtil.myPhoneNumber(getApplicationContext());
                     final EditText tn = (EditText) findViewById(R.id.register_et_number);
                     tn.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
                     tn.setText(telPhoneNo);
@@ -74,7 +70,7 @@ public class LogoActivity extends ActionBarActivity{
                 }
             }
         };
-        handler.sendEmptyMessageDelayed(0, 3000);    // ms, 3초후 종료시킴
+        handler.sendEmptyMessageDelayed(0, 3000);
     }
 
 

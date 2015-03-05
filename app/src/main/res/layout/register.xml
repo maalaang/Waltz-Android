@@ -32,7 +32,8 @@
         android:layout_marginTop="104dp"
         android:background="#ffffff"
         android:hint="  enter phone number"
-        android:textColorHint="@color/fieldText"/>
+        android:textColorHint="@color/fieldText"
+        android:textColor="#000000"/>
 
     <Button
         android:layout_width="216dp"

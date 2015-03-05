@@ -14,8 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.maalaang.waltz.ContactDB;
+import com.maalaang.waltz.ContactUtil;
 import com.maalaang.waltz.DBHelper;
-import com.maalaang.waltz.PhoneNumber;
 import com.maalaang.waltz.R;
 import com.maalaang.waltz.gcm.GcmModule;
 
@@ -57,8 +57,7 @@ public class RegisterActivity extends ActionBarActivity {
         send.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PhoneNumber pnc = new PhoneNumber();
-                HttpPostData sendData = new HttpPostData(reg_id, pnc.PhoneNumberChange(pnum), firstname.getText().toString(), lastname.getText().toString());
+                HttpPostData sendData = new HttpPostData(reg_id, ContactUtil.PhoneNumberChange(pnum), firstname.getText().toString(), lastname.getText().toString());
                 sendData.start();
                 Progress = new ProgressDialog(RegisterActivity.this);
                 Progress.show();
