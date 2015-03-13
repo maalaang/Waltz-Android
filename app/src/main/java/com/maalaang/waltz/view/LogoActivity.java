@@ -24,7 +24,8 @@ import java.io.File;
  */
 public class LogoActivity extends ActionBarActivity{
 
-
+    Button selectCtyBt;
+    Button nextBt;
     private final String PACKEGE = Constants.PACKEGE;
     private final String DB = Constants.DBNAME;
     private GcmModule gcm = new GcmModule();
@@ -33,8 +34,14 @@ public class LogoActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.logo);
         gcm.initGcm(getApplicationContext());
+        init();
         String reg_id = gcm.getRegistrationId(getApplicationContext());
         Loading(reg_id);
+    }
+
+    private void init() {
+        selectCtyBt = (Button) findViewById(R.id.register_bt_country);
+        nextBt = (Button)findViewById(R.id.register_bt_next);
     }
 
     private void Loading(final String reg_id) {
@@ -55,9 +62,15 @@ public class LogoActivity extends ActionBarActivity{
                     final EditText tn = (EditText) findViewById(R.id.register_et_number);
                     tn.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
                     tn.setText(telPhoneNo);
-                    Button nextBt = (Button)findViewById(R.id.register_bt_next);
-                    nextBt.setOnClickListener(new Button.OnClickListener(){
+                    selectCtyBt.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getApplicationContext(),SelectCountryActivity.class);
+                            startActivityForResult(intent, 1);
+                        }
+                    });
 
+                    nextBt.setOnClickListener(new Button.OnClickListener(){
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
@@ -73,7 +86,14 @@ public class LogoActivity extends ActionBarActivity{
         handler.sendEmptyMessageDelayed(0, 3000);
     }
 
-
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if(resultCode == RESULT_OK){
+            if(requestCode==1){
+                selectCtyBt.setText(data.getStringExtra("countrycode"));
+            }
+        }
+    }
 
     public boolean isCheckDB(){
         String filePath = "/data/data/" + PACKEGE + "/databases/" + DB;
