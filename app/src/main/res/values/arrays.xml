@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="country">
+        <item>aaa</item>
+        <item>bbb</item>
+        <item>ccc</item>
+    </string-array>
+
+</resources>

@@ -3,13 +3,13 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical">
     <android.support.v7.widget.Toolbar
-        android:id="@+id/main_toolbar"
+        android:id="@+id/checkbox_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize" />
 
     <FrameLayout
-        android:id="@+id/main_fl_container"
+        android:id="@+id/checkbox_fl_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF">
@@ -17,7 +17,7 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/history_lv_list"
+            android:id="@+id/checkbox_lv_list"
             android:layout_gravity="center" />
     </FrameLayout>
 </LinearLayout>

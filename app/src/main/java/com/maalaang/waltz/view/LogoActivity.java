@@ -2,6 +2,7 @@ package com.maalaang.waltz.view;
 
 import android.content.Intent;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -88,6 +89,7 @@ public class LogoActivity extends ActionBarActivity{
             if(requestCode==1){
                 selectCtyBt = (Button) findViewById(R.id.register_bt_country);
                 selectCtyBt.setText(data.getStringExtra("countrycode"));
+                selectCtyBt.setTextColor(Color.parseColor("#000000"));
             }
         }
     }
