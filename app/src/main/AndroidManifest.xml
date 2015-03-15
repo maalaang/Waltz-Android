@@ -35,6 +35,7 @@
         <activity android:name="com.maalaang.waltz.view.ReceiveActivity"/>
         <activity android:name="com.maalaang.waltz.view.HistoryActivity"/>
         <activity android:name="com.maalaang.waltz.view.RegisterActivity"/>
+        <activity android:name="com.maalaang.waltz.view.SelectCountryActivity"/>
         <activity android:name="com.maalaang.waltz.view.SelectActivity"
             android:theme="@android:style/Theme.Translucent">
             ....
