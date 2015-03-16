@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
@@ -24,28 +25,22 @@ import java.util.ArrayList;
  */
 public class SelectCountryActivity extends ActionBarActivity {
 
+    ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.checkboxlist);
 
-        String[] country = getResources().getStringArray(R.array.country);
-        ListView listView = (ListView)findViewById(R.id.checkbox_lv_list);
+        final String[] country = getResources().getStringArray(R.array.country);
+        listView = (ListView)findViewById(R.id.checkbox_lv_list);
         CountryListAdapter listviewAdapter = new CountryListAdapter();
         listView.setAdapter(listviewAdapter);
         Log.e("aaa",country.length+"");
         for(int i=0;country.length != i; i++){
             Log.e("add","add");
             listviewAdapter.add(country[i]);
-
         }
 
-    /*
-        Intent intent = getIntent();
-        intent.putExtra("countrycode", countrycode.toString());
-        setResult(RESULT_OK, intent);
-        finish();
-    */
 
     }
 
@@ -75,32 +70,47 @@ public class SelectCountryActivity extends ActionBarActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             final int pos = position;
             final Context context = parent.getContext();
-            if ( convertView == null ) {
-                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = inflater.inflate(R.layout.list_item_checkbox, parent, false);
+            ViewHolder holder = null;
 
-                TextView text = (TextView) convertView.findViewById(R.id.checkbox_tv_name);
-                text.setText(m_List.get(position));
-                text.setTextColor(Color.parseColor("#000000"));
+            if ( convertView == null ) {
+                holder = new ViewHolder();
+                convertView = getLayoutInflater().inflate(R.layout.list_item_checkbox, null);
+                holder.name = (TextView) convertView.findViewById(R.id.checkbox_tv_name);
+                convertView.setTag(holder);
+            }else{
+                if(convertView.getTag() instanceof ViewHolder){
+                    holder = (ViewHolder)convertView.getTag();
+                }else{
+                    holder = new ViewHolder();
+                    convertView = getLayoutInflater().inflate(R.layout.checkboxlist, null);
+                    holder.name = (TextView) convertView.findViewById(R.id.checkbox_tv_name);
+                    convertView.setTag(holder);
+                }
+            }
+            holder.name.setText(m_List.get(position));
+            holder.name.setTextColor(Color.parseColor("#000000"));
 
                 convertView.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(context, "리스트 클릭 : " + m_List.get(pos), Toast.LENGTH_SHORT).show();
                         Intent intent = getIntent();
                         intent.putExtra("countrycode", m_List.get(pos));
                         setResult(RESULT_OK, intent);
                         finish();
                     }
                 });
-            }
 
             return convertView;
         }
 
         public void add(String arg){
             m_List.add(arg);
+            notifyDataSetChanged();
         }
+    }
+
+    static class ViewHolder{
+        TextView name = null;
     }
 }
