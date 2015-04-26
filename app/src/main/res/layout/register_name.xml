@@ -1,71 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/primaryColor">
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
         android:inputType="textPersonName"
-        android:text="Firstname"
         android:ems="10"
         android:id="@+id/register_et_firstname"
         android:layout_gravity="bottom"
         android:layout_weight="1"
-        android:layout_alignParentTop="true"
+        android:background="#ffffff"
+        android:textColorHint="@color/fieldText"
+        android:textColor="#000000"
+        android:hint="  First name"
+        android:layout_marginTop="84dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="180dp" />
+        android:layout_alignParentEnd="true" />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
         android:inputType="textPersonName"
-        android:text="LastName"
+        android:background="#ffffff"
+        android:textColorHint="@color/fieldText"
+        android:textColor="#000000"
+        android:hint="  Middle name"
         android:ems="10"
         android:id="@+id/register_et_lastname"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
-        android:layout_below="@+id/register_et_lastname"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp" />
+        android:layout_below="@+id/register_et_firstname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/register_et_middlename"
+        android:layout_alignEnd="@+id/register_et_middlename" />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
         android:inputType="textPersonName"
-        android:text="LastName"
         android:ems="10"
-        android:visibility="invisible"
+        android:background="#ffffff"
+        android:textColorHint="@color/fieldText"
+        android:textColor="#000000"
+        android:hint="  Last name"
         android:id="@+id/register_et_middlename"
-        android:layout_above="@+id/button2"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button2"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/register_et_lastname"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="216dp"
+        android:layout_height="48dp"
+        android:text="Start"
+        android:id="@+id/register_bt_start"
+        android:background="@color/buttonColor"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/register_et_middlename"
+        android:layout_centerHorizontal="true" />
+
+
 </RelativeLayout>

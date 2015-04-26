@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColor">#5700FF</color>
+    <color name="primaryColor">#E64A19</color>
     <color name="primaryColorDark">#4A00DA</color>
-    <color name="buttonColor">#8979FF</color>
+    <color name="buttonColor">#f4511E</color>
     <color name="fieldText">#ADADAD</color>
     <color name="black">#000000</color>
 

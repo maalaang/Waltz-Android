@@ -45,20 +45,12 @@ public class RegisterActivity extends ActionBarActivity {
         final EditText firstname = (EditText) findViewById(R.id.register_et_firstname);
         final EditText lastname = (EditText) findViewById(R.id.register_et_lastname);
         final EditText middlename = (EditText) findViewById(R.id.register_et_middlename);
-        final Button bt_ifmiddle = (Button) findViewById(R.id.button);
-        Button send = (Button) findViewById(R.id.button2);
+        final Button send = (Button) findViewById(R.id.register_bt_start);
 
-        bt_ifmiddle.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                middlename.setVisibility(View.VISIBLE);
-                bt_ifmiddle.setVisibility(View.GONE);
-            }
-        });
         send.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HttpPostData sendData = new HttpPostData(reg_id, ContactUtil.PhoneNumberChange(pnum, pn), firstname.getText().toString(), lastname.getText().toString());
+                HttpPostData sendData = new HttpPostData(reg_id, ContactUtil.PhoneNumberChange(pnum, pn), firstname.getText().toString()+middlename.getText().toString(), lastname.getText().toString());
                 sendData.start();
                 Progress = new ProgressDialog(RegisterActivity.this);
                 Progress.show();

@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.codebutler.android_websockets.WebSocketClient;
@@ -70,7 +71,7 @@ public class CallVideoActivity extends ActionBarActivity{
     int i;
     MediaStream lMS=null;
     FrameLayout fv;
-    LinearLayout ll;
+    RelativeLayout ll;
     String myid;
     String otherid;
     String caller;
@@ -190,7 +191,7 @@ public class CallVideoActivity extends ActionBarActivity{
     }
 
     private void init() {
-        ll = (LinearLayout) findViewById(R.id.call_ll_callingview);
+        ll = (RelativeLayout) findViewById(R.id.call_ll_callingview);
         TextView tv_name = (TextView) findViewById(R.id.call_tv_name);
         Button bt_hangup = (Button) findViewById(R.id.call_bt_hangup);
 
