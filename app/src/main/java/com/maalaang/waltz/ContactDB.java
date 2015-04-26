@@ -33,12 +33,11 @@ public class ContactDB {
     public void saveDB() {
         Map<String, String> phone_address = ContactUtil.getAddressBook(context);
         dbHandler.open(context);
-        @SuppressWarnings("rawtypes")
         Iterator ite = phone_address.keySet().iterator();
         while (ite.hasNext()) {
             String phone = ite.next().toString();
             String name = phone_address.get(phone).toString();
-            dbHandler.insert_contact(ContactUtil.PhoneNumberChange(phone), name);
+            dbHandler.insert_contact(ContactUtil.PhoneNumberChange(phone,context.getResources().getConfiguration().locale.getCountry()), name);
         }
         dbHandler.close();
 

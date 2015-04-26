@@ -10,6 +10,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -38,12 +39,11 @@ public class ContactUtil {
         return result;
     }
 
-    public static String PhoneNumberChange(String pn){
+    public static String PhoneNumberChange(String pn, String cn){
         PhoneNumberUtil p=PhoneNumberUtil.getInstance();
-
         Phonenumber.PhoneNumber phNumber=null;
         try{
-            phNumber=p.parse(pn,"KR");
+            phNumber=p.parse(pn,cn);
         }catch(NumberParseException e){
 
         }
@@ -56,6 +56,4 @@ public class ContactUtil {
             return pn;
         }
     }
-
-
 }

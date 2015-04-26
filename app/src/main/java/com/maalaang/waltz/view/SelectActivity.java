@@ -45,7 +45,8 @@ public class SelectActivity extends Activity{
         bt_video.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String  caller = ContactUtil.PhoneNumberChange(ContactUtil.myPhoneNumber(getApplicationContext()));
+
+                String  caller = ContactUtil.PhoneNumberChange(ContactUtil.myPhoneNumber(getApplicationContext()),getApplicationContext().getResources().getConfiguration().locale.getCountry());
                 CallVideo call = new CallVideo(pnum, caller);
                 call.start();
                 try {

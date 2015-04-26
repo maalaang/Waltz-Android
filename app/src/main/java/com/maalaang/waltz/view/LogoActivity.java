@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +28,7 @@ public class LogoActivity extends ActionBarActivity{
 
     Button selectCtyBt;
     Button nextBt;
+    String pn;
     private final String PACKEGE = Constants.PACKEGE;
     private final String DB = Constants.DBNAME;
     private GcmModule gcm = new GcmModule();
@@ -41,7 +43,6 @@ public class LogoActivity extends ActionBarActivity{
 
 
     private void Loading(final String reg_id) {
-        // TODO Auto-generated method stub
         Handler handler = new Handler()
         {
             @Override
@@ -72,6 +73,7 @@ public class LogoActivity extends ActionBarActivity{
                         public void onClick(View v) {
                             Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
                             intent.putExtra("pnum", tn.getText().toString());
+                            intent.putExtra("pn", pn);
                             intent.putExtra("reg_id",reg_id);
                             startActivity(intent);
                             finish();
@@ -88,8 +90,10 @@ public class LogoActivity extends ActionBarActivity{
         if(resultCode == RESULT_OK){
             if(requestCode==1){
                 selectCtyBt = (Button) findViewById(R.id.register_bt_country);
-                selectCtyBt.setText(data.getStringExtra("countrycode"));
+                selectCtyBt.setText("aa"+data.getStringExtra("countrycode"));
                 selectCtyBt.setTextColor(Color.parseColor("#000000"));
+                String[] company = getResources().getStringArray(R.array.tn);
+                pn = company[Integer.parseInt(data.getStringExtra("pn"))];
             }
         }
     }

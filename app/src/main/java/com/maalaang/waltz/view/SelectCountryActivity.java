@@ -35,9 +35,9 @@ public class SelectCountryActivity extends ActionBarActivity {
         listView = (ListView)findViewById(R.id.checkbox_lv_list);
         CountryListAdapter listviewAdapter = new CountryListAdapter();
         listView.setAdapter(listviewAdapter);
-        Log.e("aaa",country.length+"");
+        //Log.e("aaa",country.length+"");
         for(int i=0;country.length != i; i++){
-            Log.e("add","add");
+            //Log.e("add","add");
             listviewAdapter.add(country[i]);
         }
 
@@ -96,6 +96,7 @@ public class SelectCountryActivity extends ActionBarActivity {
                     public void onClick(View v) {
                         Intent intent = getIntent();
                         intent.putExtra("countrycode", m_List.get(pos));
+                        intent.putExtra("pn", pos+"");
                         setResult(RESULT_OK, intent);
                         finish();
                     }

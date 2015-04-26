@@ -40,6 +40,7 @@ public class RegisterActivity extends ActionBarActivity {
         Intent intent = getIntent();
         GcmModule gcm = new GcmModule();
         final String pnum = intent.getExtras().getString("pnum");
+        final String pn = intent.getExtras().getString("pn");
         final String reg_id = gcm.getRegistrationId(getApplicationContext());
         final EditText firstname = (EditText) findViewById(R.id.register_et_firstname);
         final EditText lastname = (EditText) findViewById(R.id.register_et_lastname);
@@ -57,7 +58,7 @@ public class RegisterActivity extends ActionBarActivity {
         send.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HttpPostData sendData = new HttpPostData(reg_id, ContactUtil.PhoneNumberChange(pnum), firstname.getText().toString(), lastname.getText().toString());
+                HttpPostData sendData = new HttpPostData(reg_id, ContactUtil.PhoneNumberChange(pnum, pn), firstname.getText().toString(), lastname.getText().toString());
                 sendData.start();
                 Progress = new ProgressDialog(RegisterActivity.this);
                 Progress.show();
